@@ -1,0 +1,1 @@
+include ':app', ':librarySlidingTabStrip', ':libMaterialFramework', ':libraryObserverableScrollView'

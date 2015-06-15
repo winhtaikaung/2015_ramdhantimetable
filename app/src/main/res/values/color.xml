@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_color">#673AB7</color>
+    <color name="main_color_dark">#512DA8</color>
+    <color name="light_primary_color">#D1C4E9</color>
+    <color name="assent">#FF4081</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="main_teal">#009688</color>
+    <color name="main_white">#FFF</color>
+    <color name="main_gray">#9c9c9c</color>
+    <color name="main_red">#FF4081</color>
+    <color name="sec_text_color">#727272
+    </color>
+
+</resources>

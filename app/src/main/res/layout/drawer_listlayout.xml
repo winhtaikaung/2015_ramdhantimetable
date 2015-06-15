@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/left_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:clickable="true">
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_white">
+        <LinearLayout
+            android:id="@+id/ly1"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/header_bg"
+            android:baselineAligned="true"
+            android:orientation="horizontal"
+            android:paddingTop="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingBottom="16dp"
+                android:paddingRight="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center|left"
+                    android:layout_height="wrap_content">
+                    <!--ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:textColor="@color/psi_white"
+                        android:textSize="32sp"
+                        android:src="@drawable/psi_logo"
+                        /-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/main_white"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="40dp"
+
+                        android:textSize="30sp"
+                        android:text="Ramdhan"/>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="20dp"
+                    
+                    android:textColor="@color/main_white"
+                    android:textSize="15sp"
+                    android:text="Time Table"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ly1"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:background="@android:color/darker_gray"
+                    android:layout_width="fill_parent"
+                    android:height="2sp"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+                <ListView
+                    android:id="@+id/left_drawer_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:choiceMode="singleChoice"
+
+                    android:paddingTop="8dp"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_alignParentBottom="true"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textColor="@color/main_gray"
+                            android:text="CopyRight RamdhanTime Table"
+                            android:gravity="center"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</LinearLayout>
