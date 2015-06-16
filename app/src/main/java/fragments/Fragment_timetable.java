@@ -28,7 +28,7 @@ public class Fragment_timetable extends Fragment {
         dao_TimeTable dao_timeTable=new dao_TimeTable(getActivity());
         dao_timeTable.getTimetablefromlocal();
 
-        listView
+
         return view;
     }
 }
