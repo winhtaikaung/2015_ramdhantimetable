@@ -2,8 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <ListView
+        android:id="@+id/timetable_lv"
         android:layout_width="match_parent"
-        android:text="Time table Fragment"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+
+        android:paddingTop="8dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
 </LinearLayout>

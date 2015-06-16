@@ -54,20 +54,29 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        Common_helper common_helper=new Common_helper(this);
         dao_TimeTable dao_timeTable=new dao_TimeTable(getApplicationContext());
-        try{
+
             dao_timeTable.getTimetablefromlocal();
             Log.e("DB_SIZE", "" + dao_timeTable.getTimetablefromlocal().size());
-            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-            finish();
-            startActivity(intent);
-        }catch (Exception ex){
-            grabdata();
-            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-            finish();
-            startActivity(intent);
-        }
+            if(dao_timeTable.getTimetablefromlocal().size()!=0) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
+                startActivity(intent);
+            }else{
+                if(!common_helper.isNetworkConnected()) {
+                    BuildNoInternet();
+                }else{
+                    grabdata();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    finish();
+                    startActivity(intent);
+                }
+            }
+
+
+
+
 
 
 
@@ -92,7 +101,9 @@ public class SplashActivity extends AppCompatActivity {
                     dbhelp.MakeDB();
                     InsertLocaldb(getTimeTableListFromJson(s));
 
-                    Log.i("DB_CREATED","db created");
+                dao_TimeTable dao_timeTable=new dao_TimeTable(getApplicationContext());
+                dao_timeTable.getTimetablefromlocal();
+                Log.e("DB__AFTER__SIZE", "" + dao_timeTable.getTimetablefromlocal().size());
 
 
 
