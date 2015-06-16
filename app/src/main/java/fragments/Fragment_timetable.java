@@ -2,6 +2,8 @@ package fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,9 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.epicmyanmar.jr.ramdhantimetable.DetailActivity;
 import com.epicmyanmar.jr.ramdhantimetable.R;
+import com.pnikosis.materialishprogress.ProgressWheel;
 import com.rey.material.widget.ProgressView;
 
 import org.json.JSONArray;
@@ -41,9 +47,12 @@ public class Fragment_timetable extends Fragment {
     ListView listView;
 
 
-    View processBackground,progressView;
+    View processBackground,error_view;
+    View progressView;
+    TextView error_message;
 
-    @Nullable
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -53,29 +62,41 @@ public class Fragment_timetable extends Fragment {
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
-        dao_TimeTable dao_timeTable=new dao_TimeTable(getActivity());
+
         listView=(ListView) view.findViewById(R.id.timetable_lv);
         progressView= view.findViewById(R.id.progress_pv_circular_inout_colors);
         processBackground= view.findViewById(R.id.process_background);
-        if(dao_timeTable.getTimetablefromlocal().size()!=0){
+        error_view=view.findViewById(R.id.layout_errorrview);
+        error_message=(TextView) view.findViewById(R.id.tv_errormessage);
 
-
-            TimeTable_Adapter timeTable_adapterdapter=new TimeTable_Adapter(getActivity(),dao_timeTable.getTimetablefromlocal());
-            listView.setAdapter(timeTable_adapterdapter);
-        }else{
-            grabdata();
-
-
-
-        }
+        listView.setOnItemClickListener(new OnTimeTableItemClick());
 
 
 
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        dao_TimeTable dao_timeTable=new dao_TimeTable(getActivity());
+        if(dao_timeTable.getTimetablefromlocal().size()!=0){
+
+
+            TimeTable_Adapter timeTable_adapterdapter=new TimeTable_Adapter(getActivity(),dao_timeTable.getTimetablefromlocal());
+            listView.setAdapter(timeTable_adapterdapter);
+            dismissProgress();
+        }else{
+
+            grabdata();
+
+
+
+        }
+    }
+
     void grabdata(){
-        showProgress();
+
         RetrofitAPI.getInstance(getActivity()).getService().getTimetables(new Callback<String>() {
             @Override
             public void success(String s, Response response) {
@@ -89,16 +110,18 @@ public class Fragment_timetable extends Fragment {
                 dao_timeTable.getTimetablefromlocal();
                 Log.e("DB__AFTER__SIZE", "" + dao_timeTable.getTimetablefromlocal().size());
 
-                dismissProgress();
+
                 TimeTable_Adapter timeTable_adapterdapter=new TimeTable_Adapter(getActivity(),dao_timeTable.getTimetablefromlocal());
                 listView.setAdapter(timeTable_adapterdapter);
+                progressView.setVisibility(View.INVISIBLE);
 
                 /**/
             }
 
             @Override
             public void failure(RetrofitError error) {
-
+                dismissProgress();
+                //showErrorView("Couldn't get data from Server!");
             }
         });
     }
@@ -164,13 +187,30 @@ public class Fragment_timetable extends Fragment {
         super.onAttach(activity);
     }
 
+    void showErrorView(String errmsg){
+        error_view.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.INVISIBLE);
+        error_message.setText(errmsg);
+    }
+
     private void showProgress(){
+
         progressView.setVisibility(View.VISIBLE);
         processBackground.setVisibility(View.VISIBLE);
+        progressView.bringToFront();
+        processBackground.bringToFront();
     }
 
     private void dismissProgress(){
         progressView.setVisibility(View.INVISIBLE);
         processBackground.setVisibility(View.INVISIBLE);
+    }
+
+    protected class OnTimeTableItemClick implements AdapterView.OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent=new Intent(getActivity(), DetailActivity.class);
+            startActivity(intent);
+        }
     }
 }
