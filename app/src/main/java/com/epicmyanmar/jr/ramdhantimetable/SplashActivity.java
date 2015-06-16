@@ -3,6 +3,7 @@ package com.epicmyanmar.jr.ramdhantimetable;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
@@ -64,14 +65,16 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
                 startActivity(intent);
             }else{
-                if(!common_helper.isNetworkConnected()) {
-                    BuildNoInternet();
-                }else{
-                    grabdata();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    finish();
-                    startActivity(intent);
-                }
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        finish();
+                        startActivity(intent);
+                    }
+                },3000);
+
+
             }
 
 
@@ -91,88 +94,7 @@ public class SplashActivity extends AppCompatActivity {
         return true;
     }
 
-    void grabdata(){
-        RetrofitAPI.getInstance(this).getService().getTimetables(new Callback<String>() {
-            @Override
-            public void success(String s, Response response) {
 
-
-                    dbhelp dbhelp=new dbhelp(SplashActivity.this);
-                    dbhelp.MakeDB();
-                    InsertLocaldb(getTimeTableListFromJson(s));
-
-                dao_TimeTable dao_timeTable=new dao_TimeTable(getApplicationContext());
-                dao_timeTable.getTimetablefromlocal();
-                Log.e("DB__AFTER__SIZE", "" + dao_timeTable.getTimetablefromlocal().size());
-
-
-
-
-                /**/
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-        });
-    }
-
-    void InsertLocaldb(List<TimeTable> lst){
-        dbhelp dbhelp=new dbhelp(SplashActivity.this);
-        for(TimeTable timeTable : lst){
-            String query="INSERT INTO tb_timetable VALUES ('" +timeTable.getId()+"','"+timeTable.getChris_date()+"','"+timeTable.getDetail_info()+"','"+timeTable.getMain_date()+"','"+timeTable.getSehri_time()+"','"+timeTable.getIftari_time()+"','"+timeTable.is_kaderi()+"');";
-            Log.i("DB_QUERY",query);
-            dbhelp.executeQuery(query);
-        }
-
-    }
-
-    List<TimeTable> getTimeTableListFromJson(String json){
-        List<TimeTable> timeTableList=new ArrayList<>() ;
-        try{
-            JSONObject obj=new JSONObject(json);
-            if(!obj.isNull("data")){
-                JSONArray jsonArray= obj.getJSONArray("data");
-                int i=0;
-                while (jsonArray.length()>i){
-                    JSONObject timetable=jsonArray.getJSONObject(i);
-                    TimeTable t=new TimeTable();
-
-                    if(!timetable.isNull("_id")){
-                        t.setId(timetable.getString("_id"));
-                    }
-                    if(!timetable.isNull("chris_date")){
-                        t.setChris_date(timetable.getString("chris_date"));
-                    }
-                    if(!timetable.isNull("detail_info")){
-                        t.setDetail_info(timetable.getString("detail_info"));
-                    }
-                    if(!timetable.isNull("main_date")){
-                        t.setMain_date(timetable.getString("main_date"));
-                    }
-                    if(!timetable.isNull("sehri_time")){
-                        t.setSehri_time(timetable.getString("sehri_time"));
-                    }
-                    if(!timetable.isNull("iftari_time")){
-                        t.setIftari_time(timetable.getString("iftari_time"));
-                    }
-                    if(!timetable.isNull("is_kaderi")){
-                        t.setIs_kaderi(timetable.getBoolean("is_kaderi"));
-                    }
-
-                    timeTableList.add(t);
-
-                    i++;
-
-                }
-
-            }
-        }catch(Exception e){
-            return timeTableList;
-        }
-        return timeTableList;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -33,4 +33,5 @@ dependencies {
     compile project(':libMaterialFramework')
     compile project(':librarySlidingTabStrip')
     compile project(':libraryObserverableScrollView')
+    compile project(':libraryMaterialishProgress')
 }

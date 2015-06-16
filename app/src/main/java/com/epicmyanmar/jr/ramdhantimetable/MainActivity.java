@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,10 +27,23 @@ import android.widget.Toast;
 
 import com.epicmyanmar.jr.ramdhantimetable.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import API.RetrofitAPI;
 import adapter.DrawerList_Adapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import dao.dao_TimeTable;
+import db_helper.dbhelp;
 import fragments.Fragment_timetable;
+import model.TimeTable;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -67,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
     private void initialize(){
 
@@ -119,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager=getSupportFragmentManager();
         switch (position){
             case 0:
-                toolbar.setTitle(DrawerMenuList[position]);
+                getSupportActionBar().setTitle(DrawerMenuList[position]);
                 fragmentManager.beginTransaction().replace(R.id.content_frame,new Fragment_timetable()).commit();
                 break;
             case 1:

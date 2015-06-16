@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ListView
         android:id="@+id/timetable_lv"
@@ -12,4 +15,19 @@
         android:paddingTop="8dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp" />
-</LinearLayout>
+
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_pv_circular_inout_colors"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        app:barColor="@color/main_color"
+        app:progressIndeterminate="true"
+        android:visibility="invisible"/>
+    <View
+        android:id="@+id/process_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:visibility="invisible"/>
+</FrameLayout>

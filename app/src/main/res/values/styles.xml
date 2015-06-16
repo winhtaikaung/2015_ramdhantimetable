@@ -43,4 +43,9 @@
         <!-- android:textColorSecondary is used for coloring the navigation drawer icon and up arrow. -->
         <item name="android:textColorSecondary">@color/main_white</item><!--FF0000  b90606 -->
     </style>
+
+
+
+    //Material Library styles
+
 </resources>

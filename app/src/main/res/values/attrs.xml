@@ -3,4 +3,10 @@
     <declare-styleable name="font_style">
         <attr name="fontName" format="string" />
     </declare-styleable>
+    <declare-styleable name="barColor">
+        <attr name="barColor" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="progressIndeterminate">
+        <attr name="progressIndeterminate" format="string"/>
+    </declare-styleable>
 </resources>

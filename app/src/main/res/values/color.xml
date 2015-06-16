@@ -8,8 +8,12 @@
     <color name="main_teal">#009688</color>
     <color name="main_white">#FFF</color>
     <color name="main_gray">#9c9c9c</color>
-    <color name="main_red">#FF4081</color>
-    <color name="sec_text_color">#727272
-    </color>
+    <color name="main_text_color">#212121</color>
+    <color name="secondary_text_color">#727272</color>
+    <color name="main_red">#D32F2F</color>
+    <color name="sec_text_color">#727272</color>
+
+
+
 
 </resources>

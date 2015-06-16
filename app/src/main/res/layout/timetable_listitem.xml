@@ -8,9 +8,10 @@
         android:id="@+id/sehricontainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
 
 
         android:layout_alignParentLeft="true"
@@ -41,15 +42,17 @@
             android:text="100"
 
             android:textAlignment="center"
-            android:padding="10dp"
+
+            android:textSize="20sp"
+            android:textColor="@color/main_white"
 
 
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_centerVertical="true"
             android:layout_alignLeft="@+id/textView5"
-            android:layout_alignStart="@+id/textView5"
-            android:layout_marginLeft="26dp"
-            android:layout_marginStart="26dp" />
+            android:layout_alignStart="@+id/textView5" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,8 +61,8 @@
             android:textColor="@color/assent"
             android:textSize="20sp"
             android:id="@+id/label_sehritime"
-            android:layout_centerHorizontal="true"
-            android:layout_alignBottom="@+id/tv_main_date" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +71,8 @@
             android:id="@+id/textView6"
             android:textColor="@color/main_teal"
             android:textSize="20sp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:layout_alignTop="@+id/label_sehritime"
             android:layout_toRightOf="@+id/label_sehritime"
             android:layout_alignBottom="@+id/label_sehritime" />
@@ -87,6 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="06:35"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:textColor="@color/main_teal"
             android:id="@+id/tv_iftari_time"
@@ -95,6 +100,39 @@
             android:layout_alignStart="@+id/textView6"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day"
+            android:textColor="@color/main_white"
+            android:id="@+id/textView7"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_below="@+id/label_sehritime"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_alignStart="@+id/textView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date :"
+            android:id="@+id/textView8"
+            android:textSize="15sp"
+            android:textColor="@color/main_text_color"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_alignRight="@+id/label_sehritime"
+            android:layout_alignEnd="@+id/label_sehritime" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textSize="15sp"
+            android:id="@+id/tv_chris_date"
+            android:layout_alignBottom="@+id/textView8"
+            android:layout_alignLeft="@+id/textView6"
+            android:layout_alignStart="@+id/textView6" />
 
 
     </RelativeLayout>
