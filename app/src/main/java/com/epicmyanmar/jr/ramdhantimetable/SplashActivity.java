@@ -1,7 +1,11 @@
 package com.epicmyanmar.jr.ramdhantimetable;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.provider.ContactsContract;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import API.RetrofitAPI;
+import com_functions.Common_helper;
+import com_functions.MySharedPreference;
 import dao.dao_TimeTable;
 import db_helper.dbhelp;
 import model.TimeTable;
@@ -35,8 +41,38 @@ public class SplashActivity extends AppCompatActivity {
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
+        MySharedPreference.getInstance(SplashActivity.this).setBooleanPreference("DB_CRATED",false);
+
         setContentView(R.layout.activity_splash);
-        grabdata();
+        Common_helper common_helper=new Common_helper(this);
+        if(!common_helper.isNetworkConnected()) {
+            BuildNoInternet();
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        dao_TimeTable dao_timeTable=new dao_TimeTable(getApplicationContext());
+        try{
+            dao_timeTable.getTimetablefromlocal();
+            Log.e("DB_SIZE", "" + dao_timeTable.getTimetablefromlocal().size());
+            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+            finish();
+            startActivity(intent);
+        }catch (Exception ex){
+            grabdata();
+            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+            finish();
+            startActivity(intent);
+        }
+
+
+
+
+
     }
 
     @Override
@@ -51,12 +87,17 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void success(String s, Response response) {
 
-                dbhelp dbhelp=new dbhelp(SplashActivity.this);
-                dbhelp.MakeDB();
-                InsertLocaldb(getTimeTableListFromJson(s));
 
-                dao_TimeTable dao_timeTable=new dao_TimeTable(getApplicationContext());
-                dao_timeTable.getTimetablefromlocal();
+                    dbhelp dbhelp=new dbhelp(SplashActivity.this);
+                    dbhelp.MakeDB();
+                    InsertLocaldb(getTimeTableListFromJson(s));
+
+                    Log.i("DB_CREATED","db created");
+
+
+
+
+                /**/
             }
 
             @Override
@@ -135,6 +176,24 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void BuildNoInternet() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your Mobile needs DataSync for first Time installation, do you want to enable DataConnection it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
     @Override
     protected void attachBaseContext(Context newBase) {
