@@ -36,10 +36,11 @@
     </string>
 
     <string name="infra_credits">
-        We use following for Backend InfraStructure
-        Node.js\n\n
-        (Backend API)Sailjs http://sailsjs.org/
-        (Backend Dyno)https://heroku.com
+        We use followings for Backend InfraStructure\n\n
+        Node.js\n
+        (Backend API)Sails.js http://sailsjs.org/\n
+        (Backend Dyno)https://heroku.com\n
+        (Database)Postgres and  Sqlite
 
     </string>
 
