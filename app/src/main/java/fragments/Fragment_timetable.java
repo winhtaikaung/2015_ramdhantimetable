@@ -67,6 +67,7 @@ public class Fragment_timetable extends Fragment {
         );
 
         listView=(ListView) view.findViewById(R.id.timetable_lv);
+        listView.setSelector(R.drawable.listview_selector);
         progressView= (ProgressWheel)view.findViewById(R.id.progress_pv_circular_inout_colors);
         processBackground= view.findViewById(R.id.process_background);
         error_view=view.findViewById(R.id.layout_errorrview);

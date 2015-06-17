@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
-
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@null"
         android:paddingTop="8dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp" />

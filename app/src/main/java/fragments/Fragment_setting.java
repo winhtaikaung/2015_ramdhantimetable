@@ -1,6 +1,7 @@
 package fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.epicmyanmar.jr.ramdhantimetable.MainActivity;
 import com.epicmyanmar.jr.ramdhantimetable.R;
 import com.pnikosis.materialishprogress.ProgressWheel;
 import com.rey.material.app.Dialog;
@@ -65,6 +67,18 @@ public class Fragment_setting extends Fragment {
         tv_syncdata.setOnClickListener(new OnSyncbuttonCLick());
         fab_sync.setOnClickListener(new OnSyncbuttonCLick());
 
+        common_helper=new Common_helper(getActivity());
+        if(!common_helper.isNetworkConnected()){
+            new MaterialDialog.Builder(getActivity())
+                    .title("Alert")
+                    .content("Your mobile-data is turnoff please turn on mobile data before update.")
+                    .positiveText("OK")
+                    .show();
+        }else{
+            tv_syncdata.setText("Click Here to Update data From server");
+            tv_syncdata.setTextColor(getActivity().getResources().getColor(R.color.main_text_color));
+        }
+
         return view;
     }
 
@@ -92,8 +106,8 @@ public class Fragment_setting extends Fragment {
                 common_helper=new Common_helper(getActivity());
                 if(common_helper.isNetworkConnected()){
                     new MaterialDialog.Builder(getActivity())
-                            .title("Are you sure to sync data From Server")
-                            .content("By syncing data from server will download latest update data")
+                            .title("Are you sure to update data From Server")
+                            .content("By update data from server will download latest update data")
                             .positiveText("Yes")
                             .negativeText("No")
                             .callback(new MaterialDialog.ButtonCallback() {
@@ -115,7 +129,11 @@ public class Fragment_setting extends Fragment {
                             }).show();
 
                 }else{
-
+                    new MaterialDialog.Builder(getActivity())
+                            .title("Alert")
+                            .content("Your mobile-data is turnoff please turn on mobile data before update.")
+                            .positiveText("OK")
+                            .show();
                 }
             }
         }
@@ -144,12 +162,17 @@ public class Fragment_setting extends Fragment {
 
                 dismissProgress();
 
+                tv_syncdata.setText("Your timetable has been updated successfully");
+
+                Intent intent=new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
 
                 /**/
             }
 
             @Override
             public void failure(RetrofitError error) {
+                tv_syncdata.setText("Cannot update with new data");
 
                 Log.e("SYNC_ERROR", "" + error.getMessage());
             }

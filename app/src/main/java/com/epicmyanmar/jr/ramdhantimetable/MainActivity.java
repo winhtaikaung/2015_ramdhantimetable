@@ -25,6 +25,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import adapter.DrawerList_Adapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -89,8 +91,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("Ramdhan TimeTable");
 
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setOnMenuItemClickListener(new ToolbarMenuclickListener());
+
+
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
 
         //set toggle to naviation drawer on tollbar
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer) {
@@ -129,6 +134,45 @@ public class MainActivity extends AppCompatActivity {
             makeFragmentSelection(position);
         }
 
+    }
+    protected class ToolbarMenuclickListener implements Toolbar.OnMenuItemClickListener{
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_sehri_Dua) {
+                new MaterialDialog.Builder(MainActivity.this)
+                        .title("Sehri Dua")
+                        .content(getResources().getString(R.string.Sehri_dua))
+                        .positiveText("OK")
+                        .show();
+
+                return true;
+            }
+            if(id==R.id.action_iftari_dua){
+                new MaterialDialog.Builder(MainActivity.this)
+                        .title("Iftari Dua")
+                        .content(getResources().getString(R.string.Iftari_dua))
+                        .positiveText("OK")
+                        .show();
+
+                return true;
+            }
+            if(id==R.id.action_about){
+                new MaterialDialog.Builder(MainActivity.this)
+                        .title("About")
+                        .content(getResources().getString(R.string.about_me))
+                        .positiveText("OK")
+                        .show();
+
+                return true;
+            }
+
+
+            return false;
+        }
     }
 
     void makeFragmentSelection(int position){
@@ -219,14 +263,9 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
     @Override
     protected void attachBaseContext(Context newBase) {

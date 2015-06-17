@@ -10,9 +10,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Syncronization"
+            android:text="Update Data"
             android:textSize="20sp"
-            android:textColor="@color/main_text_color"
+
             android:layout_marginLeft="20dp"
             android:layout_marginRight="100dp"
             android:id="@+id/textView11" />
@@ -30,7 +30,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv_syncdata"
-            android:text="Sync Data  from Server"
+            android:text="Check for updates"
             android:textSize="20sp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
