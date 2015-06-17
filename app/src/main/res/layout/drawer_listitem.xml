@@ -20,7 +20,7 @@
         android:text="I am list Item"
         android:layout_height="35dp"
         android:layout_marginLeft="20dp"
-        android:layout_alignTop="@+id/iv_drawerlist_item"
+        android:layout_alignBottom="@+id/iv_drawerlist_item"
         android:layout_toRightOf="@+id/iv_drawerlist_item"
         android:layout_toEndOf="@+id/iv_drawerlist_item" />
 </RelativeLayout>
