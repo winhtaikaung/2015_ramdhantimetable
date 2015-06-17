@@ -44,6 +44,7 @@ import butterknife.InjectView;
 import com_functions.Common_helper;
 import dao.dao_TimeTable;
 import db_helper.dbhelp;
+import fragments.Fragment_setting;
 import fragments.Fragment_timetable;
 import model.TimeTable;
 import retrofit.Callback;
@@ -152,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().replace(R.id.content_frame,new Fragment_timetable()).commit();
                 break;
             case 1:
-                toolbar.setTitle(DrawerMenuList[position]);
-                //fragmentManager.beginTransaction().replace(R.id.content_frame, new Fragment_Sample()).commit();
+                getSupportActionBar().setTitle(DrawerMenuList[position]);
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Fragment_setting()).commit();
                 break;
             case 2:
                 //Do action here

@@ -8,6 +8,7 @@ import db_helper.dbhelp;
 import model.TimeTable;
 import android.content.Context;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import com.epicmyanmar.jr.ramdhantimetable.SplashActivity;
 
@@ -25,7 +26,7 @@ public class dao_TimeTable {
     public List<TimeTable> getTimetablefromlocal(){
         List<TimeTable> lstTimetable=new ArrayList<TimeTable>();
         dbhelp dbhelper=new dbhelp(mContext);
-        String query="SELECT _id,chris_date,detail_info,main_date,sehri_time,iftari_time,is_kaderi FROM tb_timetable LIMIT 0,30";
+        String query="SELECT _id,chris_date,detail_info,main_date,sehri_time,iftari_time,is_kaderi FROM tb_timetable ORDER BY chris_date LIMIT 0,30";
         ArrayList datatable=new ArrayList();
         try {
             datatable = dbhelper.getDataTable(query);
@@ -46,10 +47,22 @@ public class dao_TimeTable {
                 lstTimetable.add(obj);
                 i++;
             }
+
         }catch (SQLiteException e){
 
         }
         return lstTimetable;
+
+    }
+
+    public void droptable(String Tablename){
+        dbhelp dbhelp=new dbhelp(mContext);
+        try {
+
+            dbhelp.executeQuery("DELETE FROM" + Tablename);
+        }catch(Exception e){
+            Log.e("dao_Timetable/droptable",e.getMessage());
+        }
 
     }
 

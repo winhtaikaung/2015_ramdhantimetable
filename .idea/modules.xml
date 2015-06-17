@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/RamdhanTimetable.iml" filepath="$PROJECT_DIR$/RamdhanTimetable.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libMaterialFramework/libMaterialFramework.iml" filepath="$PROJECT_DIR$/libMaterialFramework/libMaterialFramework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraryMaterialDialogs/libraryMaterialDialogs.iml" filepath="$PROJECT_DIR$/libraryMaterialDialogs/libraryMaterialDialogs.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraryMaterialishProgress/libraryMaterialishProgress.iml" filepath="$PROJECT_DIR$/libraryMaterialishProgress/libraryMaterialishProgress.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraryObserverableScrollView/libraryObserverableScrollView.iml" filepath="$PROJECT_DIR$/libraryObserverableScrollView/libraryObserverableScrollView.iml" />
       <module fileurl="file://$PROJECT_DIR$/librarySlidingTabStrip/librarySlidingTabStrip.iml" filepath="$PROJECT_DIR$/librarySlidingTabStrip/librarySlidingTabStrip.iml" />

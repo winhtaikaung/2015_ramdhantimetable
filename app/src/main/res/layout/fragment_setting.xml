@@ -6,13 +6,69 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Syncronization"
+            android:textSize="20sp"
+            android:textColor="@color/main_text_color"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="100dp"
+            android:id="@+id/textView11" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/main_gray"
+            android:id="@+id/textView10"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_below="@+id/textView11"
+            android:layout_alignLeft="@+id/textView11"
+            android:layout_alignStart="@+id/textView11" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_syncdata"
+            android:text="Sync Data  from Server"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/main_gray"
+            android:layout_below="@+id/textView10"
+            android:layout_alignLeft="@+id/textView10"
+            android:layout_alignStart="@+id/textView10"
+            android:layout_marginTop="18dp" />
+
         <com.rey.material.widget.FloatingActionButton
             style="@style/Material.Widget.FloatingActionButton.Light"
-            android:id="@+id/fab_image"
+            android:id="@+id/fab_sync"
             app:fab_backgroundColor="@color/main_red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_iconSrc="@drawable/ic_sync"/>
+            app:fab_iconSrc="@drawable/ic_sync"
+            android:layout_marginBottom="37dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
 
     </RelativeLayout>
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_pv_circular_inout_colors"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        app:matProg_barColor="@color/main_color"
+        app:matProg_progressIndeterminate="true"
+        android:visibility="invisible"/>
+    <View
+        android:id="@+id/process_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:visibility="invisible"/>
 </FrameLayout>

@@ -1,1 +1,1 @@
-include ':app', ':librarySlidingTabStrip', ':libMaterialFramework', ':libraryObserverableScrollView', ':libraryMaterialishProgress'
+include ':app', ':librarySlidingTabStrip', ':libMaterialFramework', ':libraryObserverableScrollView', ':libraryMaterialishProgress', ':libraryMaterialDialogs'

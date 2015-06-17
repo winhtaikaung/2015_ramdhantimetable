@@ -103,6 +103,7 @@
     <orderEntry type="library" exported="" name="calligraphy-2.1.0" level="project" />
     <orderEntry type="module" module-name="libraryObserverableScrollView" exported="" />
     <orderEntry type="module" module-name="libraryMaterialishProgress" exported="" />
+    <orderEntry type="module" module-name="libraryMaterialDialogs" exported="" />
     <orderEntry type="module" module-name="librarySlidingTabStrip" exported="" />
     <orderEntry type="module" module-name="libMaterialFramework" exported="" />
   </component>

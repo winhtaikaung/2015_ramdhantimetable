@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_color">#2196F3</color>
+    <color name="main_color">#1976D2</color>
     <color name="main_color_dark">#1976D2</color>
     <color name="light_primary_color">#D1C4E9</color>
-    <color name="assent">#FF4081</color>
+    <color name="assent">#1976D2</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="main_teal">#009688</color>
     <color name="main_white">#FFF</color>
