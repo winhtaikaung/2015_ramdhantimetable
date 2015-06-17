@@ -5,17 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,32 +23,16 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.epicmyanmar.jr.ramdhantimetable.R;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import API.RetrofitAPI;
 import adapter.DrawerList_Adapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com_functions.Common_helper;
 import dao.dao_TimeTable;
-import db_helper.dbhelp;
-import fragments.Fragment_about;
+import fragments.Fragment_credits;
 import fragments.Fragment_setting;
 import fragments.Fragment_timetable;
-import model.TimeTable;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -131,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void binddataTOList(){
-        DrawerMenuList=new String[]{"TimeTable", "Settings","About"};
+        DrawerMenuList=new String[]{"TimeTable", "Settings","Credits"};
         DrawerIcons=new int[]{R.drawable.ic_calendar, R.drawable.ic_setting,R.drawable.ic_info};
         DrawerList_Adapter drawerList_adapter=new DrawerList_Adapter(this,DrawerMenuList,DrawerIcons);
         drawerList_adapter.notifyDataSetChanged();
@@ -164,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 //Do action here
                 toolbar.setTitle(DrawerMenuList[position]);
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new Fragment_about()).commit();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Fragment_credits()).commit();
                 break;
             case 3:
                 //Do action here
