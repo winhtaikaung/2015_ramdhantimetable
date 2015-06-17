@@ -33,7 +33,7 @@ public class DetailActivity extends AppCompatActivity implements ObservableScrol
     boolean is_kadri;
 
     private int mParallaxImageHeight;
-    @InjectView(R.id.toolbar)
+
     Toolbar toolbar;
     @InjectView(R.id.scrollView_detail)
     ObservableScrollView scrollView_detail;
@@ -70,6 +70,9 @@ public class DetailActivity extends AppCompatActivity implements ObservableScrol
         cd.setAlpha(0);
         setContentView(R.layout.activity_detail);
         ButterKnife.inject(this);
+
+        toolbar=(Toolbar) findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.menu_detail);
 
 
 
@@ -111,7 +114,7 @@ public class DetailActivity extends AppCompatActivity implements ObservableScrol
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_detail, menu);
+        //getMenuInflater().inflate(R.menu.menu_detail, menu);
         return true;
     }
 

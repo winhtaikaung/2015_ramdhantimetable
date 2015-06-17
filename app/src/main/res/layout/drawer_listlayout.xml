@@ -111,7 +111,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:textColor="@color/main_gray"
-                            android:text="CopyRight RamdhanTime Table"
+                            android:text=""
                             android:gravity="center"
                             android:layout_height="wrap_content" />
                     </LinearLayout>

@@ -27,7 +27,7 @@
 
         <TextView
             android:layout_width="fill_parent"
-            android:text="Made in Yangon\n(Myanmar)"
+            android:text="Made with 100% Passion"
             android:textColor="@color/main_white"
             android:textSize="15sp"
             android:gravity="center|bottom"

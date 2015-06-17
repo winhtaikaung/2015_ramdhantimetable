@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/main_color</item>
         <item name="colorPrimaryDark">@color/main_color_dark</item>
-        <item name="colorAccent">@color/assent</item>
+        <item name="colorAccent">@color/main_assent</item>
         <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
 
     </style>
@@ -16,17 +16,17 @@
     <style name="AppTheme.Toolbar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/main_color</item>
         <item name="colorPrimaryDark">@color/main_color_dark</item>
-        <item name="colorAccent">@color/assent</item>
+        <item name="colorAccent">@color/main_assent</item>
     </style>
     <style name="Toolbar" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/main_color</item>
         <item name="colorPrimaryDark">@color/main_color_dark</item>
-        <item name="colorAccent">@color/assent</item>
+        <item name="colorAccent">@color/main_assent</item>
     </style>
     <style name="TransparentToolbar" parent="Theme.AppCompat">
         <item name="colorPrimary">#00ffffff</item>
         <item name="colorPrimaryDark">#00ffffff</item>
-        <item name="colorAccent">@color/assent</item>
+        <item name="colorAccent">@color/main_assent</item>
     </style>
 
     <style name="AppTheme.Widget"/>

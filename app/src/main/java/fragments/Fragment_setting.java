@@ -55,7 +55,7 @@ public class Fragment_setting extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_setting, container, false);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/Roboto-Regular.ttf")
+                        .setDefaultFontPath("fonts/Padauk.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
@@ -141,7 +141,7 @@ public class Fragment_setting extends Fragment {
 
                 dao_TimeTable dao_timeTable=new dao_TimeTable(getActivity());
                 dao_timeTable.getTimetablefromlocal();
-                Log.e("DB__AFTER__SIZE", "" + dao_timeTable.getTimetablefromlocal().size());
+
                 dismissProgress();
 
 

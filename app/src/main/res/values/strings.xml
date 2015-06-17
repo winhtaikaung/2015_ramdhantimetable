@@ -10,6 +10,37 @@
 
     <string name="sehri">Sehri (ဝါချည်ချိန်)</string>
     <string name="iftari">Iftari ( ဝါဖြေချိန် )</string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_splash">Ramdhan\nTimeTable</string>
+
+    <string name="library_credits">We use following libraries to develop RamdhanTimeTable\n\n
+        com.android.support:appcompat-v7\n
+        com.android.support:support-v4\n
+        com.android.support:cardview-v7\n\n
+
+        com.jakewharton:butterknife:6.1.0\n
+        com.squareup.retrofit:retrofit:1.9.0\n
+        com.squareup.okhttp:okhttp:2.0.0\n
+        uk.co.chrisjenx:calligraphy:2.1.0\n
+        com.nineoldandroids:library:2.4.0\n\n
+
+        com.afollestad.materialdialogs\n
+        com.rey.material.app\n
+
+        com.pnikosis.materialishprogress\n
+        com.github.ksoichiro.android.observablescrollview\n
+    </string>
+    <string name="icon_credits">
+        We use Icons and Pictures from following websites\n\n
+        http://www.flaticon.com/\n\n
+        http://wallpaperest.com/
+    </string>
+
+    <string name="infra_credits">
+        We use following for Backend InfraStructure
+        Node.js\n\n
+        (Backend API)Sailjs http://sailsjs.org/
+        (Backend Dyno)https://heroku.com
+
+    </string>
 
 </resources>

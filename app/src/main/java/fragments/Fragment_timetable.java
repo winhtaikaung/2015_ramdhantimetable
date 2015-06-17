@@ -61,7 +61,7 @@ public class Fragment_timetable extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_timetable, container, false);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/Roboto-Regular.ttf")
+                        .setDefaultFontPath("fonts/Padauk.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
@@ -100,7 +100,7 @@ public class Fragment_timetable extends Fragment {
 
             } else {
                 dismissProgress();
-                showErrorView("Please Turn On Mobile data \n or Wi-fi to sync timetable");
+                showErrorView("Please Turn On Mobile data \n or Wi-fi to sync timetable\nClick To Retry");
 
             }
 

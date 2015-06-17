@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.epicmyanmar.jr.ramdhantimetable.R;
 
 import org.json.JSONArray;
@@ -44,6 +45,7 @@ import butterknife.InjectView;
 import com_functions.Common_helper;
 import dao.dao_TimeTable;
 import db_helper.dbhelp;
+import fragments.Fragment_about;
 import fragments.Fragment_setting;
 import fragments.Fragment_timetable;
 import model.TimeTable;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CharSequence Title;
     @InjectView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
-    @InjectView(R.id.toolbar) Toolbar toolbar;
+    Toolbar toolbar;
     @InjectView(R.id.left_drawer) LinearLayout mDrawerListLayout;
     @InjectView(R.id.left_drawer_lv) ListView mDrawerList;
 
@@ -72,12 +74,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/notosans_R.ttf")
+                        .setDefaultFontPath("fonts/Padauk.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+        toolbar=(Toolbar)findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.menu_main);
 
         initialize();
         binddataTOList();
@@ -100,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize(){
 
-        setSupportActionBar(toolbar);
+
         toolbar.setTitle("Ramdhan TimeTable");
 
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
@@ -123,10 +127,11 @@ public class MainActivity extends AppCompatActivity {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+
     }
 
     void binddataTOList(){
-        DrawerMenuList=new String[]{"Calendar", "Setting","About"};
+        DrawerMenuList=new String[]{"TimeTable", "Settings","About"};
         DrawerIcons=new int[]{R.drawable.ic_calendar, R.drawable.ic_setting,R.drawable.ic_info};
         DrawerList_Adapter drawerList_adapter=new DrawerList_Adapter(this,DrawerMenuList,DrawerIcons);
         drawerList_adapter.notifyDataSetChanged();
@@ -149,16 +154,17 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager=getSupportFragmentManager();
         switch (position){
             case 0:
-                getSupportActionBar().setTitle(DrawerMenuList[position]);
+                toolbar.setTitle(DrawerMenuList[position]);
                 fragmentManager.beginTransaction().replace(R.id.content_frame,new Fragment_timetable()).commit();
                 break;
             case 1:
-                getSupportActionBar().setTitle(DrawerMenuList[position]);
+                toolbar.setTitle(DrawerMenuList[position]);
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new Fragment_setting()).commit();
                 break;
             case 2:
                 //Do action here
                 toolbar.setTitle(DrawerMenuList[position]);
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new Fragment_about()).commit();
                 break;
             case 3:
                 //Do action here
@@ -220,8 +226,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
-        toolbar.inflateMenu(R.menu.menu_main);
+
+
         return true;
     }
 
