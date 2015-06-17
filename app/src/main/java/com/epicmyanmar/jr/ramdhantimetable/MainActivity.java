@@ -1,7 +1,10 @@
 package com.epicmyanmar.jr.ramdhantimetable;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -9,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -37,6 +41,7 @@ import API.RetrofitAPI;
 import adapter.DrawerList_Adapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com_functions.Common_helper;
 import dao.dao_TimeTable;
 import db_helper.dbhelp;
 import fragments.Fragment_timetable;
@@ -61,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     String[] DrawerMenuList;
     int[] DrawerIcons;
+    Common_helper common_helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +80,15 @@ public class MainActivity extends AppCompatActivity {
 
         initialize();
         binddataTOList();
+        common_helper=new Common_helper(this);
+        dao_TimeTable dao_timeTable=new dao_TimeTable(MainActivity.this);
+        if(dao_timeTable.getTimetablefromlocal().size()!=0) {
+            makeFragmentSelection(0);
 
-        makeFragmentSelection(0);
+        }else{
+            makeFragmentSelection(0);
+        }
+
 
 
 
@@ -230,5 +243,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    private void BuildNoInternet() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Please Turn on Your Internet to sync Data From Server?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
 }

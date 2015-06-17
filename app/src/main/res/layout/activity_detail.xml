@@ -24,19 +24,7 @@
                     android:layout_height="@dimen/detail_header_image_Height"
                     android:id="@+id/header_imageView" />
 
-            <com.rey.material.widget.FloatingActionButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="27dp"
-                android:layout_marginEnd="27dp"
-                app:fab_backgroundColor="@color/assent"
-                app:fab_iconSrc="@drawable/ic_pencil_white"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="215dp"
-                android:id="@+id/view" />
+
             <android.support.v7.widget.CardView
                 android:id="@+id/sehricontainer"
                 android:layout_width="match_parent"
@@ -99,11 +87,58 @@
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="25dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_below="@+id/iftaricontainer"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/textView9">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textStyle="bold"
+                android:textColor="@color/main_text_color"
+                android:textSize="30sp"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/lbl_description"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/tv_detail_info"
+                        android:textSize="20sp"
+                        android:layout_below="@+id/lbl_description"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="36dp"
+                        android:layout_marginStart="36dp" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+                android:id="@+id/iftaricontainer"
                 android:layout_gravity="left|center_vertical"
                 android:layout_below="@+id/sehricontainer"
                 android:layout_alignParentLeft="true"
@@ -114,73 +149,83 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp">
-                <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/iftari"
-                android:textStyle="bold"
-                android:textColor="@color/main_teal"
-                android:textSize="25sp"
-                    android:id="@+id/textView"
-                    android:layout_alignTop="@+id/textView2"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_alignParentStart="true" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="="
-                    android:textStyle="bold"
-                    android:textColor="@color/main_teal"
-                    android:textSize="25sp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/iftari"
+                        android:textStyle="bold"
+                        android:textColor="@color/main_teal"
+                        android:textSize="25sp"
+                        android:id="@+id/textView"
+                        android:layout_alignTop="@+id/tv_iftari_time"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_alignParentStart="true" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="="
+                        android:textStyle="bold"
+                        android:textColor="@color/main_teal"
+                        android:textSize="25sp"
 
 
-                    android:layout_alignBaseline="@+id/textView"
-                    android:layout_alignBottom="@+id/textView"
-                    android:layout_toRightOf="@+id/textView"
-                    android:layout_toEndOf="@+id/textView"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:id="@+id/textView3" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ညနေ ၆:၄၅ "
-                    android:textStyle="bold"
-                    android:textColor="@color/main_teal"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="11dp"
-                    android:id="@+id/textView2"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/textView3"
-                    android:layout_toEndOf="@+id/textView3"
-                    android:layout_marginStart="11dp" />
+                        android:layout_alignBaseline="@+id/textView"
+                        android:layout_alignBottom="@+id/textView"
+                        android:layout_toRightOf="@+id/textView"
+                        android:layout_toEndOf="@+id/textView"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:id="@+id/textView3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ညနေ ၆:၄၅ "
+                        android:textStyle="bold"
+                        android:textColor="@color/main_teal"
+                        android:textSize="20sp"
+                        android:layout_marginLeft="11dp"
+                        android:id="@+id/tv_iftari_time"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/textView3"
+                        android:layout_toEndOf="@+id/textView3"
+                        android:layout_marginStart="11dp" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="၁"
-                android:id="@+id/date_count"
+                android:id="@+id/tv_maindate"
                 android:textSize="75sp"
                 android:textColor="@color/main_white"
-                android:layout_alignParentTop="true"
-                android:layout_alignLeft="@+id/sehricontainer"
-                android:layout_alignStart="@+id/sehricontainer"
-                android:layout_marginTop="82dp" />
+                android:layout_marginBottom="36dp"
+                android:layout_above="@+id/tv_chris_date"
+                android:layout_centerHorizontal="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ရက်"
+                android:text="Day-"
 
                 android:textSize="75sp"
                 android:textColor="@color/main_white"
-                android:layout_alignTop="@+id/date_count"
-                android:layout_toRightOf="@+id/date_count"
-                android:layout_toEndOf="@+id/date_count"
-                android:layout_marginLeft="44dp"
-                android:layout_marginStart="44dp" />
+                android:id="@+id/textView2"
+                android:layout_alignTop="@+id/tv_maindate"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2010-15-01"
+
+                android:textSize="55sp"
+                android:textColor="@color/main_white"
+                android:id="@+id/tv_chris_date"
+                android:layout_above="@+id/sehricontainer"
+                android:layout_alignLeft="@+id/sehricontainer"
+                android:layout_alignStart="@+id/sehricontainer" />
 
         </RelativeLayout>
 

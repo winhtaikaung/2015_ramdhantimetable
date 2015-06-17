@@ -43,7 +43,8 @@
 
             android:textAlignment="center"
 
-            android:textSize="20sp"
+            android:textSize="25dp"
+            android:textStyle="bold"
             android:textColor="@color/main_white"
 
 

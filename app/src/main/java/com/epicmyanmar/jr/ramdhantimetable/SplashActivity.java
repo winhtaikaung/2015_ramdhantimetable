@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/notosans_R.ttf")
+                        .setDefaultFontPath("fonts/Roboto-Bold.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
@@ -47,7 +47,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         Common_helper common_helper=new Common_helper(this);
         if(!common_helper.isNetworkConnected()) {
-            BuildNoInternet();
+           // BuildNoInternet();
         }
 
     }
@@ -111,23 +111,7 @@ public class SplashActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void BuildNoInternet() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Your Mobile needs DataSync for first Time installation, do you want to enable DataConnection it?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                        startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alert = builder.create();
-        alert.show();
-    }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

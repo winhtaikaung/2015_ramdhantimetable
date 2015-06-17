@@ -30,6 +30,7 @@ import API.RetrofitAPI;
 import adapter.TimeTable_Adapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com_functions.Common_helper;
 import dao.dao_TimeTable;
 import db_helper.dbhelp;
 import model.TimeTable;
@@ -48,8 +49,10 @@ public class Fragment_timetable extends Fragment {
 
 
     View processBackground,error_view;
-    View progressView;
+    ProgressWheel progressView;
     TextView error_message;
+
+    Common_helper common_helper;
 
 
 
@@ -64,17 +67,21 @@ public class Fragment_timetable extends Fragment {
         );
 
         listView=(ListView) view.findViewById(R.id.timetable_lv);
-        progressView= view.findViewById(R.id.progress_pv_circular_inout_colors);
+        progressView= (ProgressWheel)view.findViewById(R.id.progress_pv_circular_inout_colors);
         processBackground= view.findViewById(R.id.process_background);
         error_view=view.findViewById(R.id.layout_errorrview);
         error_message=(TextView) view.findViewById(R.id.tv_errormessage);
 
         listView.setOnItemClickListener(new OnTimeTableItemClick());
 
+        error_view.setOnClickListener(new OnFragmentClick());
+
 
 
         return view;
     }
+
+
 
     @Override
     public void onStart() {
@@ -87,8 +94,16 @@ public class Fragment_timetable extends Fragment {
             listView.setAdapter(timeTable_adapterdapter);
             dismissProgress();
         }else{
+            common_helper=new Common_helper(getActivity());
+            if (common_helper.isNetworkConnected()) {
+                grabdata();
 
-            grabdata();
+            } else {
+                dismissProgress();
+                showErrorView("Please Turn On Mobile data \n or Wi-fi to sync timetable");
+
+            }
+
 
 
 
@@ -114,14 +129,14 @@ public class Fragment_timetable extends Fragment {
                 TimeTable_Adapter timeTable_adapterdapter=new TimeTable_Adapter(getActivity(),dao_timeTable.getTimetablefromlocal());
                 listView.setAdapter(timeTable_adapterdapter);
                 progressView.setVisibility(View.INVISIBLE);
-
+                dismissProgress();
                 /**/
             }
 
             @Override
             public void failure(RetrofitError error) {
                 dismissProgress();
-                //showErrorView("Couldn't get data from Server!");
+                showErrorView("Couldn't get data from Server!");
             }
         });
     }
@@ -193,12 +208,20 @@ public class Fragment_timetable extends Fragment {
         error_message.setText(errmsg);
     }
 
+    void hideErrorView(){
+        error_view.setVisibility(View.INVISIBLE);
+        error_message.setText("");
+        showProgress();
+    }
+
     private void showProgress(){
 
         progressView.setVisibility(View.VISIBLE);
         processBackground.setVisibility(View.VISIBLE);
-        progressView.bringToFront();
+
         processBackground.bringToFront();
+        progressView.bringToFront();
+
     }
 
     private void dismissProgress(){
@@ -209,8 +232,39 @@ public class Fragment_timetable extends Fragment {
     protected class OnTimeTableItemClick implements AdapterView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            TimeTable obj=new TimeTable();
+            obj=(TimeTable)listView.getAdapter().getItem(position);
             Intent intent=new Intent(getActivity(), DetailActivity.class);
+            intent.putExtra("id",obj.getId());
+            intent.putExtra("chris_date",obj.getChris_date());
+            intent.putExtra("detail_info",obj.getDetail_info());
+            intent.putExtra("main_date",obj.getMain_date());
+            intent.putExtra("sehri_time",obj.getSehri_time());
+            intent.putExtra("iftari_time",obj.getIftari_time());
+            intent.putExtra("is_kaderi",obj.is_kaderi());
+
             startActivity(intent);
+        }
+    }
+
+    protected class OnFragmentClick implements AdapterView.OnClickListener{
+
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.layout_errorrview:
+                        if(common_helper.isNetworkConnected()){
+
+
+
+                            hideErrorView();
+                            grabdata();
+                            listView.setVisibility(View.VISIBLE);
+                            //dismissProgress();
+                        }
+                    break;
+            }
         }
     }
 }

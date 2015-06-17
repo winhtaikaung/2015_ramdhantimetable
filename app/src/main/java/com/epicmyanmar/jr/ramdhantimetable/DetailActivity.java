@@ -1,6 +1,7 @@
 package com.epicmyanmar.jr.ramdhantimetable;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
@@ -27,6 +29,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class DetailActivity extends AppCompatActivity implements ObservableScrollViewCallbacks {
 
+    String id,maindate,sehritime,iftaritime,chrisdate,detail;
+    boolean is_kadri;
+
     private int mParallaxImageHeight;
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -35,6 +40,23 @@ public class DetailActivity extends AppCompatActivity implements ObservableScrol
 
     @InjectView(R.id.header_imageView)
     ImageView headerimage_view;
+
+    @InjectView(R.id.tv_maindate)
+    TextView tv_main_date;
+
+    @InjectView(R.id.tv_Time_sehri)
+    TextView tv_Time_sehri;
+
+    @InjectView(R.id.tv_iftari_time)
+    TextView tv_iftari_time;
+
+    @InjectView(R.id.tv_detail_info)
+    TextView tv_detail_info;
+
+    @InjectView(R.id.tv_chris_date)
+    TextView tv_chris_date;
+
+
     final ColorDrawable cd = new ColorDrawable(Color.rgb(68, 74, 83));
 
     @Override
@@ -49,7 +71,31 @@ public class DetailActivity extends AppCompatActivity implements ObservableScrol
         setContentView(R.layout.activity_detail);
         ButterKnife.inject(this);
 
+
+
         initialize();
+
+        Intent intent = getIntent();
+       id= intent.getStringExtra("id");
+        chrisdate=intent.getStringExtra("chris_date");
+        detail=intent.getStringExtra("detail_info");
+        maindate=intent.getStringExtra("main_date");
+        sehritime=intent.getStringExtra("sehri_time");
+        iftaritime=intent.getStringExtra("iftari_time");
+       is_kadri= intent.getBooleanExtra("is_kaderi",true);
+
+        tv_main_date.setText(maindate);
+        tv_Time_sehri.setText(sehritime+" am");
+        tv_iftari_time.setText(iftaritime+" pm");
+        tv_chris_date.setText(chrisdate);
+
+        tv_detail_info.setText((!detail.equals(""))?detail:"none");
+        if(is_kadri){
+            Toast.makeText(this,"Today kaderi",Toast.LENGTH_LONG).show();
+        }
+
+
+
 
         scrollView_detail.setScrollViewCallbacks(this);
 
@@ -105,13 +151,13 @@ public class DetailActivity extends AppCompatActivity implements ObservableScrol
     private void initialize() {
 
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Detail Info");
+        toolbar.setTitle("");
 
 
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Detail Info");
+            actionBar.setTitle("");
             toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
             toolbar.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.main_color)));
             actionBar.setHomeButtonEnabled(true);

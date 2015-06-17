@@ -29,6 +29,7 @@
                 android:layout_gravity="left"
                 android:textSize="20dp" />
         </android.support.v7.widget.Toolbar>
+
         <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"

@@ -29,5 +29,5 @@
         android:layout_height="match_parent"
         android:background="#ffffff"
         android:visibility="invisible"/>
-
+    <include layout="@layout/error_layout"></include>
 </FrameLayout>
